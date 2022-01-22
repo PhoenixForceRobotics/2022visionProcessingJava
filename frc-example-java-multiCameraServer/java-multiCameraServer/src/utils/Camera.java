@@ -16,7 +16,6 @@ public class Camera extends UsbCamera
     public String path;
     public JsonObject config;
     public JsonElement streamConfig;
-    public CameraConfig cameraConfig;
 
     public Camera(JsonObject cameraJSONObj)
     {
@@ -24,8 +23,6 @@ public class Camera extends UsbCamera
     }
     public boolean readCameraConfig(JsonObject cameraJSONObj) 
     {
-        CameraConfig cam = new CameraConfig();
-    
         // name
         JsonElement nameElement = cameraJSONObj.get("name");
         if (nameElement == null) {
@@ -59,7 +56,7 @@ public class Camera extends UsbCamera
 
         Gson gson = new GsonBuilder().create();
 
-        this.setConfigJson(gson.toJson(this.config));
+        this.setConfigJson(gson.toJson(this.config))    ;
         this.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
     }   
 }

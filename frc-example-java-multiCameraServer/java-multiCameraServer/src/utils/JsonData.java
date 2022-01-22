@@ -30,7 +30,7 @@ public class JsonData
     // Report parse error
     public static void parseError(String str)
     {
-        System.err.println("config error in '" + configFile + "': " + str);
+        System.err.println("config error in '" + configFilePath + "': " + str);
     }
     
     // Read configuration files
