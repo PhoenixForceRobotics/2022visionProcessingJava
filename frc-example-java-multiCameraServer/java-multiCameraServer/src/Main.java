@@ -28,8 +28,6 @@ import edu.wpi.first.vision.VisionThread;
 
 import org.opencv.core.Mat;
 
-import utils.JSONUtils.*;
-
 public final class Main {
 
   private JsonData json = new JsonData();
