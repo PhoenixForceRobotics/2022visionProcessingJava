@@ -1,4 +1,4 @@
-package vision2022;
+package utils;
 
 //A port of all the python functions.
 
@@ -13,9 +13,9 @@ public class VisionMath {
         */
         double[] acs = {0, 0};
         int resolution;
-        for(int i; i <= pixelcoords.length; i++) { //calculate ACS for both horizontal and vertical
+        for(int i = 0; i <= pixelcoords.length; i++) { //calculate ACS for both horizontal and vertical
             resolution = Constants.CameraConstants.RESOLUTION[i];
-            int halfofres = resolution / 2; //precalculate half of resultion for that 1% SPEEEEEEEEED
+            int halfofres = resolution / 2; //pre-calculate half of resolution for that 1% SPEEEEEEEEED
             acs[i] = (pixelcoords[i] - halfofres) / halfofres; //thing from FRC
         }
         return acs; //returns values
@@ -54,6 +54,6 @@ public class VisionMath {
         double cam_angle = Constants.CameraConstants.ANGLE_CAMERA;
         double target_height = Constants.TargetConstants.HEIGHT_TARGET;
         
-        return (target_height - cam_height) / tan(cam_angle + pitch); //a magic thing from frc that we worked out for ourselves (but first from frc) :3
+        return (target_height - cam_height) / Math.tan(cam_angle + pitch); //a magic thing from frc that we worked out for ourselves (but first from frc) :3
     }
 }
