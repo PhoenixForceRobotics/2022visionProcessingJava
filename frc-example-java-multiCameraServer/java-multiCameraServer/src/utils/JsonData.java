@@ -34,7 +34,6 @@ public class JsonData
     }
     
     // Read configuration files
-    public static
     @SuppressWarnings("PMD.CyclomaticComplexity")
     public void readConfig(String input)
     {              
@@ -71,7 +70,7 @@ public class JsonData
         // Network Table Mode (optional)
         if (JSONObj.has("ntmode"))
         {
-            String NTModeStr = obj.get("ntmode").getAsString();
+            String NTModeStr = JSONObj.get("ntmode").getAsString();
             if ("client".equalsIgnoreCase(NTModeStr))
             {
                 setServer(false);
@@ -91,7 +90,7 @@ public class JsonData
         }
         
         // Cameras
-        JsonElement camerasElement = obj.get("cameras");
+        JsonElement camerasElement = JSONObj.get("cameras");
         if (camerasElement == null)
         {
             parseError("could not read cameras");
@@ -104,7 +103,7 @@ public class JsonData
         }
     }
 
-    setConfigFilePath(String configFilePath)
+    public void setConfigFilePath(String configFilePath)
     {
         this.configFilePath = configFilePath;
     }
@@ -118,13 +117,8 @@ public class JsonData
     {
         isServer = server;
     }
-
-    public void addCameraConfig(CameraConfig cameraConfig)
-    {
-        cameraConfigs.add(cameraConfig);
-    }
-
-    public void AddCamera(Camera camera)
+    
+    public void addCamera(Camera camera)
     {
         cameras.add(camera);
     }
@@ -139,9 +133,9 @@ public class JsonData
         return isServer;
     }
 
-    public List<Camera> getCameras()
+    public Camera[] getCameraArray()
     {
-        return cameras;
+        return cameras.toArray(new Camera[cameras.size()]);
     }
 }
 

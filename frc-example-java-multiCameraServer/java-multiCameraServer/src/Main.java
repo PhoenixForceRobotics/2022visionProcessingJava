@@ -9,7 +9,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -30,21 +29,18 @@ import org.opencv.core.Mat;
 
 import static utils.JSONUtils.*;
 
-public final class Main {
-
-  private static String configFilePath= Constants.CONFIG_FILE_PATH;
-  private JSON json = new JSON();
- 
-  private Main() { }
- 
+public final class Main
+{
   // Runs the actual program
   public static void main(String... args) {
+    JsonData jsonData = new JsonData();
+  
     if (args.length > 0) {
       configFilePath = args[0];
     }
 
     // read configuration
-    json.readConfig(configFilePath);
+    jsonData.readConfig(Constants.CONFIG_FILE_PATH);
 
     // start NetworkTables
     NetworkTableInstance networkTableInstance = NetworkTableInstance.getDefault();
@@ -52,14 +48,14 @@ public final class Main {
       System.out.println("Setting up NetworkTables server");
       networkTableInstance.startServer();
     } else {
-      System.out.println("Setting up NetworkTables client for team " + JSON.getTeam());
-      networkTableInstance.startClientTeam(team);
+      System.out.println("Setting up NetworkTables client for team " + jsonData.getTeam());
+      networkTableInstance.startClientTeam(jsonData.getTeam());
       networkTableInstance.startDSClient();
     }
 
     // start cameras
-    for (Camera camera : ProgramConfigs.cameras) {
-      cameras.add(startCamera(config));
+    for (Camera camera : jsonData.getCameraArray()) {
+      camera.startCamera();
     }
 
     // start image processing on camera 0 if present

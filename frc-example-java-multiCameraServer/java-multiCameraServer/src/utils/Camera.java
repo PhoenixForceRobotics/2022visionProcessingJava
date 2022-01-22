@@ -51,7 +51,7 @@ public class Camera extends UsbCamera
     }
 
     // Start Running The Camera when told to 
-    public VideoSource startCamera()
+    public void startCamera()
     {
         System.out.println("Starting camera '" + name + "' on " + path);
         
@@ -59,7 +59,7 @@ public class Camera extends UsbCamera
 
         Gson gson = new GsonBuilder().create();
 
-        this.setConfigJson(gson.toJson(this.config))    ;
+        this.setConfigJson(gson.toJson(this.config));
         this.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
     }   
 }
