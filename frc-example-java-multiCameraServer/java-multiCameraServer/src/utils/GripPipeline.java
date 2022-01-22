@@ -262,9 +262,5 @@ public class GripPipeline {
 			output.add(contour);
 		}
 	}
-
-
-
-
 }
 

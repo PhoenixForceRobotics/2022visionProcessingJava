@@ -32,10 +32,9 @@ import static utils.JSONUtils.*;
 
 public final class Main {
 
-  private static String configFilePath = Constants.CONFIG_FILE_PATH;
-  private static ConfigFields configFields;
+  private static String configFilePath= Constants.CONFIG_FILE_PATH;
+  private JSON json = new JSON();
  
-  
   private Main() { }
  
   // Runs the actual program
@@ -45,7 +44,7 @@ public final class Main {
     }
 
     // read configuration
-    configFields = readConfig(configFilePath);
+    json.readConfig(configFilePath);
 
     // start NetworkTables
     NetworkTableInstance networkTableInstance = NetworkTableInstance.getDefault();
@@ -53,13 +52,13 @@ public final class Main {
       System.out.println("Setting up NetworkTables server");
       networkTableInstance.startServer();
     } else {
-      System.out.println("Setting up NetworkTables client for team " + team);
+      System.out.println("Setting up NetworkTables client for team " + JSON.getTeam());
       networkTableInstance.startClientTeam(team);
       networkTableInstance.startDSClient();
     }
 
     // start cameras
-    for (CameraConfig config : configFields.cameraConfigs) {
+    for (Camera camera : ProgramConfigs.cameras) {
       cameras.add(startCamera(config));
     }
 
