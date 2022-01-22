@@ -1,8 +1,8 @@
 package utils;
-import javafx.util.Pair;
 
 public class Constants {
     //In the interest of avoiding magic numbers, all constants are here.
+    private static String configFilePath = "/boot/frc.json";
     
     public static class CameraConstants {
         //Constants related strictly to the camera itself.

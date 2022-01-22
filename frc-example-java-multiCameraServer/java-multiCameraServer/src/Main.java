@@ -28,14 +28,12 @@ import edu.wpi.first.vision.VisionThread;
 
 import org.opencv.core.Mat;
 
-import static utils.JSONUtils.*;
+import utils.JSONUtils.*;
 
 public final class Main {
 
-  private static String configFilePath= Constants.CONFIG_FILE_PATH;
-  private JSON json = new JSON();
- 
-  private Main() { }
+  private JsonData json = new JsonData();
+  private final Object imgLock = new Object();
  
   // Runs the actual program
   public static void main(String... args) {
@@ -52,7 +50,7 @@ public final class Main {
       System.out.println("Setting up NetworkTables server");
       networkTableInstance.startServer();
     } else {
-      System.out.println("Setting up NetworkTables client for team " + JSON.getTeam());
+      System.out.println("Setting up NetworkTables client for team " + json.getTeam());
       networkTableInstance.startClientTeam(team);
       networkTableInstance.startDSClient();
     }
@@ -69,8 +67,15 @@ public final class Main {
         new GripPipeline(), 
         pipeline -> 
         {
+          if (!pipeline.filterContoursOutput().isEmpty()) {
+            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
+            centerX = r.x + (r.width / 2);
+            synchronized (imgLock) {
+                
+            }
+          }
         // do something with pipeline results (contours in our case)
-        //TODO: publish to network table here?
+        // TODO: publish to network table here?
         }
       );
       visionThread.start();
@@ -81,7 +86,7 @@ public final class Main {
       try {
         Thread.sleep(10000);
       } catch (InterruptedException ex) {
-        return;
+        System.exit(1);
       }
     }
   }

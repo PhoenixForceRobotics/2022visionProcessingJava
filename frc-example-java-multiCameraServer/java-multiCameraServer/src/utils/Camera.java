@@ -1,5 +1,6 @@
 package utils;
 
+import utils.*;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -20,6 +21,7 @@ public class Camera extends UsbCamera
     public Camera(JsonObject cameraJSONObj)
     {
         readCameraConfig(cameraJSONObj);
+        super(getName, getPath);
     }
     public boolean readCameraConfig(JsonObject cameraJSONObj) 
     {
