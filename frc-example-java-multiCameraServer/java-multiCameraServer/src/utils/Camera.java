@@ -2,16 +2,12 @@ package utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import utils.*;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
 import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.networktables.EntryListenerFlags;
-import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Camera extends UsbCamera
 {

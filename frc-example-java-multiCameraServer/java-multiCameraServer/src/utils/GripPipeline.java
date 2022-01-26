@@ -1,21 +1,11 @@
 package utils;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.HashMap;
 
 import edu.wpi.first.vision.VisionPipeline;
 import org.opencv.core.*;
-import org.opencv.core.Core.*;
-import org.opencv.features2d.FeatureDetector;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.*;
-import org.opencv.objdetect.*;
 
 /**
 * GripPipeline class.
@@ -91,9 +81,38 @@ public class GripPipeline implements VisionPipeline
 			filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio,
 			filterContoursOutput);
 		
+		
 		// Step Filter by size
+		MatOfPoint largest = filterContoursOutput.get(0);
+		
+		if(filterContoursOutput().size() > 0)
+		{
+			for (MatOfPoint contour : filterContoursOutput)
+			{
+				if(Imgproc.contourArea(contour) > Imgproc.contourArea(largest))
+				{
+					largest = contour;
+				}
+			}
+		}
 		
 		
+		
+		// Step utilize largest to find distance
+		Rect rectangle = Imgproc.boundingRect(largest);
+		int centerX = rectangle.x + (rectangle.width / 2);
+		int centerY = rectangle.y + (rectangle.height / 2); // In PCS
+		
+		double[] ACS = VisionMath.pcs_to_acs(new int[]{centerX, centerY});
+		
+		// Process to yaw
+		double yaw = VisionMath.acs_to_yaw(ACS);
+		
+		// Process to pitch
+		double pitch = VisionMath.acs_to_pitch(ACS);
+		
+		// Process to distance
+		double distance = VisionMath.distance_to_target(pitch);
 	}
 
 	/**
@@ -144,7 +163,7 @@ public class GripPipeline implements VisionPipeline
 	 * @param hue The min and max hue
 	 * @param sat The min and max saturation
 	 * @param val The min and max value
-	 * @param output The image in which to store the output.
+	 * @param out The image in which to store the output.
 	 */
 	private void hsvThreshold(Mat input, double[] hue, double[] sat, double[] val,
 	    Mat out) {
@@ -208,6 +227,8 @@ public class GripPipeline implements VisionPipeline
 	 * @param maskSize the size of the mask.
 	 * @param output The image in which to store the output.
 	 */
+	
+	// NOT AT ALL THE RIGHT DEFINITION *******
 	private void findContours(Mat input, boolean externalOnly,
 		List<MatOfPoint> contours) {
 		Mat hierarchy = new Mat();
@@ -234,7 +255,7 @@ public class GripPipeline implements VisionPipeline
 	 * @param maxWidth maximum width
 	 * @param minHeight minimum height
 	 * @param maxHeight maximimum height
-	 * @param Solidity the minimum and maximum solidity of a contour
+	 * @param solidity the minimum and maximum solidity of a contour
 	 * @param minVertexCount minimum vertex Count of the contours
 	 * @param maxVertexCount maximum vertex Count
 	 * @param minRatio minimum ratio of width to height
