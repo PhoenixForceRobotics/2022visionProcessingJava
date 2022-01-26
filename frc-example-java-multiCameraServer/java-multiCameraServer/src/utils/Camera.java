@@ -1,5 +1,7 @@
 package utils;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import utils.*;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -13,52 +15,59 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 
 public class Camera extends UsbCamera
 {
-    public String name;
-    public String path;
-    public JsonObject config;
-    public JsonElement streamConfig;
+    private CameraData cameraData;
 
-    public Camera(JsonObject cameraJSONObj)
+    public Camera(CameraData cameraData)
     {
-        readCameraConfig(cameraJSONObj);
-        super(getName, getPath);
+        super(cameraData.getName(), cameraData.getPath());
+        
     }
-    public boolean readCameraConfig(JsonObject cameraJSONObj) 
+    
+    private static void parseError(String str)
     {
+        System.err.println("config error in '" + Constants.CONFIG_FILE_PATH + "': " + str);
+    }
+    
+    public static CameraData readCameraConfig(JsonObject cameraJSONObj)
+    {
+        CameraData outputData = new CameraData();
+        
         // name
         JsonElement nameElement = cameraJSONObj.get("name");
         if (nameElement == null) {
-          parseError("could not read camera name");
-          return false;
+            parseError("could not read camera name");
+            System.exit(1);
         }
-        name = nameElement.getAsString();
+        outputData.setName(nameElement.getAsString());
     
         // path
         JsonElement pathElement = cameraJSONObj.get("path");
         if (pathElement == null) {
-          parseError("camera '" + cam.name + "': could not read path");
-          return false;
+            parseError("camera '" + outputData.getName() + "': could not read path");
+            System.exit(1);
         }
-        path = pathElement.getAsString();
+        
+        outputData.setPath(pathElement.getAsString());
     
         // stream properties
-        streamConfig = cameraJSONObj.get("stream");
+        outputData.setStreamConfig(cameraJSONObj.get("stream"));
     
-        this.config = cameraJSONObj;
+        // general JSON Obj for debugging
+        outputData.setConfig(cameraJSONObj);
 
-        return true;
+        return outputData;
     }
 
     // Start Running The Camera when told to 
     public void startCamera()
     {
-        System.out.println("Starting camera '" + name + "' on " + path);
+        System.out.println("Starting camera '" + cameraData.getName() + "' on " + cameraData.getPath());
         
-        CameraServer.getInstance().startAutomaticCapture(camera);
+        CameraServer.getInstance().startAutomaticCapture(this);
 
         Gson gson = new GsonBuilder().create();
 
-        this.setConfigJson(gson.toJson(this.config))    ;
+        this.setConfigJson(gson.toJson(cameraData.getConfig()));
         this.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
     }   
 }

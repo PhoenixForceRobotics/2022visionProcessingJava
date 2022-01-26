@@ -2,77 +2,59 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
+import org.opencv.core.Rect;
+import org.opencv.imgproc.Imgproc;
 import utils.*;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-
-import edu.wpi.cscore.MjpegServer;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.cscore.VideoSource;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.networktables.EntryListenerFlags;
 import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.vision.VisionPipeline;
 import edu.wpi.first.vision.VisionThread;
 
-import org.opencv.core.Mat;
+import org.opencv.core.*;
+import org.opencv.core.Core.*;
+import org.opencv.features2d.FeatureDetector;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.*;
+import org.opencv.objdetect.*;
+
 
 public final class Main {
-
-  private JsonData json = new JsonData();
-  private final Object imgLock = new Object();
- 
+  
+  private static JsonData json = new JsonData();
+  private static final Object imgLock = new Object();
+  
   // Runs the actual program
   public static void main(String... args) {
     if (args.length > 0) {
-      configFilePath = args[0];
+      json.setConfigFilePath(args[0]);
     }
 
     // read configuration
-    json.readConfig(configFilePath);
+    json.readConfig(Constants.CONFIG_FILE_PATH);
 
     // start NetworkTables
     NetworkTableInstance networkTableInstance = NetworkTableInstance.getDefault();
-    if (isServer) {
+    if (json.isServer()) {
       System.out.println("Setting up NetworkTables server");
       networkTableInstance.startServer();
     } else {
       System.out.println("Setting up NetworkTables client for team " + json.getTeam());
-      networkTableInstance.startClientTeam(team);
+      networkTableInstance.startClientTeam(json.getTeam());
       networkTableInstance.startDSClient();
     }
 
     // start cameras
-    for (Camera camera : ProgramConfigs.cameras) {
+    for (Camera camera : json.getCameraArray()) {
       camera.startCamera();
     }
 
     // start image processing on camera 0 if present
-    if (cameras.size() > 0) {
+    if (json.getCameraArray().length > 0) {
       VisionThread visionThread = new VisionThread(
-        cameras.get(0),
-        new GripPipeline(), 
-        pipeline -> 
+        json.getCameraArray()[0], //TODO: sort through cameras, find the one of specified path
+        new GripPipeline(),
+        GripPipeline pipeline = new GripPipeline ->
         {
-          if (!pipeline.filterContoursOutput().isEmpty()) {
-            Rect r = Imgproc.boundingRect(pipeline.filterContoursOutput().get(0));
-            centerX = r.x + (r.width / 2);
-            synchronized (imgLock) {
-                
-            }
-          }
-        // do something with pipeline results (contours in our case)
+          // do something with pipeline results (contours in our case)
         // TODO: publish to network table here?
         }
       );

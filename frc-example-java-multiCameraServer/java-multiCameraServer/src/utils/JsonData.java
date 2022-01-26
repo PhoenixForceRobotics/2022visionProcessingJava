@@ -17,7 +17,7 @@ import com.google.gson.JsonParser;
 
 public class JsonData
 {
-    private static String configFilePath= Constants.CONFIG_FILE_PATH;
+    private String configFilePath;
     private int team;
     private boolean isServer;
     private ArrayList<Camera> cameras;
@@ -25,10 +25,11 @@ public class JsonData
     public JsonData()
     {
         cameras = new ArrayList<Camera>();
+        configFilePath = Constants.CONFIG_FILE_PATH;
     }
     
     // Report parse error
-    public static void parseError(String str)
+    private void parseError(String str)
     {
         System.err.println("config error in '" + configFilePath + "': " + str);
     }
@@ -41,14 +42,7 @@ public class JsonData
         setConfigFilePath(input);
         
         // Parse file
-        JsonElement topElement;
-        try
-        {
-            topElement = new JsonParser().parse(Files.newBufferedReader(Paths.get(this.configFilePath)));
-        } catch (IOException ex) {
-            System.err.println("could not open '" + configFilePath + "': " + ex);
-            System.exit(1);
-        }
+        JsonElement topElement = JsonParser.parseString((this.configFilePath)).getAsJsonObject();
         
         // Top level must be an object
         if (!topElement.isJsonObject())
@@ -97,9 +91,9 @@ public class JsonData
             System.exit(1);
         }
         JsonArray cameraJSONs = camerasElement.getAsJsonArray();
-        for (JsonElement camera : cameras)
+        for (JsonElement camera : cameraJSONs)
         {
-            addCamera(new Camera(camera.getAsJsonObject()));
+            addCamera(new Camera(Camera.readCameraConfig(camera.getAsJsonObject())));
         }
     }
 

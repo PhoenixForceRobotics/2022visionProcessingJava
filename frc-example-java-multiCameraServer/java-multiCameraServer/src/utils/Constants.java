@@ -2,7 +2,7 @@ package utils;
 
 public class Constants {
     //In the interest of avoiding magic numbers, all constants are here.
-    private static String configFilePath = "/boot/frc.json";
+    public static String CONFIG_FILE_PATH = "/boot/frc.json";
     
     public static class CameraConstants {
         //Constants related strictly to the camera itself.
