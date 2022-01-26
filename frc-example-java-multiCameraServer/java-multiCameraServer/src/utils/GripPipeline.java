@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.HashMap;
 
+import edu.wpi.first.vision.VisionPipeline;
 import org.opencv.core.*;
 import org.opencv.core.Core.*;
 import org.opencv.features2d.FeatureDetector;
@@ -23,7 +24,8 @@ import org.opencv.objdetect.*;
 *
 * @author GRIP
 */
-public class GripPipeline {
+public class GripPipeline implements VisionPipeline
+{
 
 	//Outputs
 	private Mat hsvThresholdOutput = new Mat();
@@ -83,8 +85,15 @@ public class GripPipeline {
 		double filterContoursMinVertices = 0.0;
 		double filterContoursMinRatio = 0.0;
 		double filterContoursMaxRatio = 1000.0;
-		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
-
+		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter,
+			filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight,
+			filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices,
+			filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio,
+			filterContoursOutput);
+		
+		// Step Filter by size
+		
+		
 	}
 
 	/**

@@ -52,9 +52,10 @@ public final class Main {
       VisionThread visionThread = new VisionThread(
         json.getCameraArray()[0], //TODO: sort through cameras, find the one of specified path
         new GripPipeline(),
-        GripPipeline pipeline = new GripPipeline ->
+        pipeline->
         {
-          // do something with pipeline results (contours in our case)
+          
+          // do something with pipeline results (upload to network table)
         // TODO: publish to network table here?
         }
       );
