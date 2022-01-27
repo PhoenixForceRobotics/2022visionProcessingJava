@@ -23,6 +23,12 @@ public class GripPipeline implements VisionPipeline
 	private Mat cvDilateOutput = new Mat();
 	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
 	private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
+	private int[] PCS = new int[2];
+	private double[] ACS = new double[2];
+	private double yaw;
+	private double pitch;
+	private double distance;
+	
 
 	static {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -102,17 +108,17 @@ public class GripPipeline implements VisionPipeline
 		Rect rectangle = Imgproc.boundingRect(largest);
 		int centerX = rectangle.x + (rectangle.width / 2);
 		int centerY = rectangle.y + (rectangle.height / 2); // In PCS
-		
-		double[] ACS = VisionMath.pcs_to_acs(new int[]{centerX, centerY});
+		PCS = new int[]{centerX, centerY};
+		ACS = VisionMath.pcs_to_acs(PCS);
 		
 		// Process to yaw
-		double yaw = VisionMath.acs_to_yaw(ACS);
+		yaw = VisionMath.acs_to_yaw(ACS);
 		
 		// Process to pitch
-		double pitch = VisionMath.acs_to_pitch(ACS);
+		pitch = VisionMath.acs_to_pitch(ACS);
 		
 		// Process to distance
-		double distance = VisionMath.distance_to_target(pitch);
+		distance = VisionMath.distance_to_target(pitch);
 	}
 
 	/**
@@ -291,6 +297,31 @@ public class GripPipeline implements VisionPipeline
 			if (ratio < minRatio || ratio > maxRatio) continue;
 			output.add(contour);
 		}
+	}
+	
+	public double[] getACS()
+	{
+		return ACS;
+	}
+	
+	public int[] getPCS()
+	{
+		return PCS;
+	}
+	
+	public double getPitch()
+	{
+		return pitch;
+	}
+	
+	public double getYaw()
+	{
+		return yaw;
+	}
+	
+	public double getDistance()
+	{
+		return distance;
 	}
 }
 

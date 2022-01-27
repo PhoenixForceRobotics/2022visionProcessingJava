@@ -1,6 +1,6 @@
 package utils;
 
-//A port of all the python functions.
+/* A port of all the python functions. */
 
 public class VisionMath {
     public static double[] pcs_to_acs(int[] pixelcoords) {
@@ -14,8 +14,7 @@ public class VisionMath {
         double[] acs = {0, 0};
         int resolution;
         for(int i = 0; i <= pixelcoords.length; i++) { //calculate ACS for both horizontal and vertical
-            resolution = Constants.CameraConstants.RESOLUTION[i];
-            int halfofres = resolution / 2; //pre-calculate half of resolution for that 1% SPEEEEEEEEED
+            int halfofres = Constants.CameraConstants.RESOLUTION[i] / 2; //pre-calculate half of resolution for that 1% SPEEEEEEEEED
             acs[i] = (pixelcoords[i] - halfofres) / halfofres; //thing from FRC
         }
         return acs; //returns values
