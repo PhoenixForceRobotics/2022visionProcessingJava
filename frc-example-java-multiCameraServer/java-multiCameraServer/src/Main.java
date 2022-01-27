@@ -11,17 +11,31 @@ import utils.*;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.vision.VisionThread;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 public final class Main {
   
   private static JsonData json = new JsonData();
   private static final Object imgLock = new Object();
   
   // Runs the actual program
-  public static void main(String... args) {
+  public static void main(String... args) throws IOException
+  {
     if (args.length > 0) {
       json.setConfigFilePath(args[0]);
     }
-
+  
+    FileReader readJSON = new FileReader(Constants.CONFIG_FILE_PATH);
+    
+    
+    // Holds true till there is nothing to read
+    for(int i = readJSON.read(); i != -1; i = readJSON.read())
+    {
+      System.out.print((char)i);
+    }
+    
     // read configuration
     json.readConfig(Constants.CONFIG_FILE_PATH);
 
@@ -36,7 +50,7 @@ public final class Main {
       networkTableInstance.startClientTeam(json.getTeam());
       networkTableInstance.startDSClient();
     }
-    //Defines every table entry that we use
+    // Defines every table entry that we use
     NetworkTable table = networkTableInstance.getTable("PiVisionData");
     NetworkTableEntry ACSXCoordinate = table.getEntry("ACS");
     NetworkTableEntry ACSYCoordinate = table.getEntry("ACS");

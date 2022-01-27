@@ -42,15 +42,15 @@ public class JsonData
         setConfigFilePath(input);
         
         // Parse file
-        JsonElement topElement = JsonParser.parseString((this.configFilePath)).getAsJsonObject();
+//        JsonElement topElement = JsonParser.parseString((configFilePath));
         
-        // Top level must be an object
-        if (!topElement.isJsonObject())
-        {
-            parseError("must be JSON object");
-            System.exit(1);
-        }
-        JsonObject JSONObj = topElement.getAsJsonObject();
+//        // Top level must be an object
+//        if (!topElement.isJsonObject())
+//        {
+//            parseError("must be JSON object");
+//            System.exit(1);
+//        }
+        JsonObject JSONObj = JsonParser.parseString((configFilePath)).getAsJsonObject();
         
         // Team number
         JsonElement teamElement = JSONObj.get("team");

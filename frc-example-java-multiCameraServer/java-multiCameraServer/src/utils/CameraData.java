@@ -1,20 +1,19 @@
 package utils;
 
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import org.json.JSONObject;
 
 public class CameraData
 {
     private String name;
     private String path;
-    private JsonObject config;
-    private JsonElement streamConfig;
+    private JSONObject config;
+    private JSONObject streamConfig;
     
     public CameraData()
     {
     
     }
-    public CameraData(String name, String path, JsonObject config, JsonElement streamConfig)
+    public CameraData(String name, String path, JSONObject config, JSONObject streamConfig)
     {
         this.name = name;
         this.path = path;
@@ -32,12 +31,12 @@ public class CameraData
         return path;
     }
     
-    public JsonObject getConfig()
+    public JSONObject getConfig()
     {
         return config;
     }
     
-    public JsonElement getStreamConfig()
+    public JSONObject getStreamConfig()
     {
         return streamConfig;
     }
@@ -52,12 +51,12 @@ public class CameraData
         this.path = path;
     }
     
-    public void setConfig(JsonObject config)
+    public void setConfig(JSONObject config)
     {
         this.config = config;
     }
     
-    public void setStreamConfig(JsonElement streamConfig)
+    public void setStreamConfig(JSONObject streamConfig)
     {
         this.streamConfig = streamConfig;
     }
