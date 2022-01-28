@@ -13,10 +13,11 @@ public class VisionMath {
         */
         double[] acs = {0, 0};
         int resolution;
-        for(int i = 0; i <= pixelcoords.length; i++) { //calculate ACS for both horizontal and vertical
-            int halfofres = Constants.CameraConstants.RESOLUTION[i] / 2; //pre-calculate half of resolution for that 1% SPEEEEEEEEED
-            acs[i] = (pixelcoords[i] - halfofres) / halfofres; //thing from FRC
+        for(int i = 0; i < pixelcoords.length; i++) { //calculate ACS for both horizontal and vertical
+            double halfofres = Constants.CameraConstants.RESOLUTION[i] / 2; //pre-calculate half of resolution for that 1% SPEEEEEEEEED
+            acs[i] = (double) (pixelcoords[i] - halfofres) / halfofres; //thing from FRC
         }
+        acs[1] *= -1; //un-mirrors y axis
         return acs; //returns values
     }
 

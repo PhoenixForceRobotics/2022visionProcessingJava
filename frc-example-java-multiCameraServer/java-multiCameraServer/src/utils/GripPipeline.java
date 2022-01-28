@@ -105,6 +105,8 @@ public class GripPipeline implements VisionPipeline
 			}
 			
 			// Step utilize largest to find distance
+			
+			// First finds center rectangle and coordinates
 			Rect rectangle = Imgproc.boundingRect(largest);
 			int centerX = rectangle.x + (rectangle.width / 2);
 			int centerY = rectangle.y + (rectangle.height / 2); // In PCS
