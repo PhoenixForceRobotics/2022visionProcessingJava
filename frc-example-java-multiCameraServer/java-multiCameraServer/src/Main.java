@@ -48,8 +48,8 @@ public final class Main {
     NetworkTable table = networkTableInstance.getTable("PiVisionData");
     
     NetworkTableEntry hasTarget = table.getEntry("hasTarget");
-    NetworkTableEntry ACSXCoordinate = table.getEntry("ACS");
-    NetworkTableEntry ACSYCoordinate = table.getEntry("ACS");
+    NetworkTableEntry ACSXCoordinate = table.getEntry("ACSX");
+    NetworkTableEntry ACSYCoordinate = table.getEntry("ACSY");
     NetworkTableEntry yawEntry = table.getEntry("yaw");
     NetworkTableEntry pitchEntry = table.getEntry("pitch");
     NetworkTableEntry distanceEntry = table.getEntry("distance");
