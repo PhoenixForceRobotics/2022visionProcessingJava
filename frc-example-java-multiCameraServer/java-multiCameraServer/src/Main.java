@@ -47,7 +47,7 @@ public final class Main {
     // Defines every table entry that we use
     NetworkTable table = networkTableInstance.getTable("PiVisionData");
     
-    NetworkTableEntry hasTarget = table.getEntry("hasTarget")
+    NetworkTableEntry hasTarget = table.getEntry("hasTarget");
     NetworkTableEntry ACSXCoordinate = table.getEntry("ACS");
     NetworkTableEntry ACSYCoordinate = table.getEntry("ACS");
     NetworkTableEntry yawEntry = table.getEntry("yaw");
