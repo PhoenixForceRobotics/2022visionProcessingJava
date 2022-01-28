@@ -26,15 +26,6 @@ public final class Main {
     if (args.length > 0) {
       json.setConfigFilePath(args[0]);
     }
-  
-    FileReader readJSON = new FileReader(Constants.CONFIG_FILE_PATH);
-    
-    
-    // Holds true till there is nothing to read
-    for(int i = readJSON.read(); i != -1; i = readJSON.read())
-    {
-      System.out.print((char)i);
-    }
     
     // read configuration
     json.readConfig(Constants.CONFIG_FILE_PATH);

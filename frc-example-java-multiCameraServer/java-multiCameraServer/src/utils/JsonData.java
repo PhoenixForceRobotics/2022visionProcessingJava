@@ -1,22 +1,22 @@
 package utils;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import utils.* ;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import java.util.Scanner;
 
 public class JsonData
 {
+    private String jsonString;
     private String configFilePath;
     private int team;
     private boolean isServer;
@@ -34,48 +34,53 @@ public class JsonData
         System.err.println("config error in '" + configFilePath + "': " + str);
     }
     
+    public void readConfig()
+    {
+        readConfig(Constants.CONFIG_FILE_PATH);
+    }
     // Read configuration files
-    @SuppressWarnings("PMD.CyclomaticComplexity")
     public void readConfig(String input)
     {              
         // Store config file path
         setConfigFilePath(input);
         
-        // Parse file
-//        JsonElement topElement = JsonParser.parseString((configFilePath));
-        
-//        // Top level must be an object
-//        if (!topElement.isJsonObject())
-//        {
-//            parseError("must be JSON object");
-//            System.exit(1);
-//        }
-        JsonObject JSONObj = JsonParser.parseString((configFilePath)).getAsJsonObject();
+        // Find file
+        try
+        {
+            FileReader readJSON = new FileReader(getConfigFilePath());
+            for(int i = readJSON.read(); i != -1; i = readJSON.read())
+            {
+                jsonString = jsonString.concat(String.valueOf((i)));
+            }
+            
+        } catch (FileNotFoundException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+    
+        JSONObject visionConfig = new JSONObject(jsonString);
         
         // Team number
-        JsonElement teamElement = JSONObj.get("team");
-        if (teamElement == null)
-        {
-            parseError("could not read team number");
-            System.exit(1);
-        }
-        setTeam(teamElement.getAsInt());
+        setTeam(visionConfig.getInt("team"));
         
         // Network Table Mode (optional)
-        if (JSONObj.has("ntmode"))
+        if (visionConfig.has("ntmode"))
         {
-            String NTModeStr = JSONObj.get("ntmode").getAsString();
-            if ("client".equalsIgnoreCase(NTModeStr))
+            String NTModeString = visionConfig.getString("ntmode");
+            if ("client".equalsIgnoreCase(NTModeString))
             {
                 setServer(false);
             }
-            else if ("server".equalsIgnoreCase(NTModeStr))
+            else if ("server".equalsIgnoreCase(NTModeString))
             {
                 setServer(true);
             }
             else
             {
-                parseError("could not understand ntmode value '" + NTModeStr + "'");
+                parseError("could not understand ntmode value '" + NTModeString + "'");
             }
         } 
         else 
@@ -84,19 +89,18 @@ public class JsonData
         }
         
         // Cameras
-        JsonElement camerasElement = JSONObj.get("cameras");
-        if (camerasElement == null)
+        JSONArray cameraJSONs = visionConfig.getJSONArray("cameras");
+        for (int i = 0; i < cameraJSONs.length(); i++)
         {
-            parseError("could not read cameras");
-            System.exit(1);
-        }
-        JsonArray cameraJSONs = camerasElement.getAsJsonArray();
-        for (JsonElement camera : cameraJSONs)
-        {
-            addCamera(new Camera(Camera.readCameraConfig(camera.getAsJsonObject())));
+            addCamera(new Camera(Camera.readCameraConfig(cameraJSONs.getJSONObject(i))));
         }
     }
-
+    
+    public void setJsonString(String jsonString)
+    {
+        this.jsonString = jsonString;
+    }
+    
     public void setConfigFilePath(String configFilePath)
     {
         this.configFilePath = configFilePath;
@@ -116,7 +120,17 @@ public class JsonData
     {
         cameras.add(camera);
     }
-
+    
+    public String getConfigFilePath()
+    {
+        return configFilePath;
+    }
+    
+    public String getJsonString()
+    {
+        return jsonString;
+    }
+    
     public int getTeam()
     {
         return team;

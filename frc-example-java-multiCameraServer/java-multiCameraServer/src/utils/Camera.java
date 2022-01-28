@@ -12,12 +12,7 @@ public class Camera extends UsbCamera
     public Camera(CameraData cameraData)
     {
         super(cameraData.getName(), cameraData.getPath());
-        
-    }
-    
-    private static void parseError(String str)
-    {
-        System.err.println("config error in '" + Constants.CONFIG_FILE_PATH + "': " + str);
+        this.cameraData = cameraData;
     }
     
     public static CameraData readCameraConfig(JSONObject cameraJSONObj)
@@ -25,15 +20,15 @@ public class Camera extends UsbCamera
         CameraData outputData = new CameraData();
         
         // name
-        outputData.setName(cameraJSONObj.getJSONObject("name").getString());
-    
+        outputData.setName(cameraJSONObj.getString("name"));
+        
         // path
-        outputData.setPath(cameraJSONObj.getJSONObject("path").getString());
+        outputData.setPath(cameraJSONObj.getString("path"));
         
         // stream properties
-        outputData.setStreamConfig(cameraJSONObj.get("stream"));
+        outputData.setStreamConfig(cameraJSONObj.getJSONObject("stream"));
     
-        // general JSON Obj for debugging
+        // general JSON Obj for debugging and initializing the camera
         outputData.setConfig(cameraJSONObj);
 
         return outputData;
