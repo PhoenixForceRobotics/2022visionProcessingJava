@@ -23,6 +23,7 @@ public class GripPipeline implements VisionPipeline
 	private Mat cvDilateOutput = new Mat();
 	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
 	private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
+	private boolean isTargeting = false; //TODO Find a better name for "foundTarget"
 	private int[] PCS = new int[2];
 	private double[] ACS = new double[2];
 	private double yaw;
@@ -89,10 +90,12 @@ public class GripPipeline implements VisionPipeline
 		
 		
 		// Step Filter by size
-		MatOfPoint largest = filterContoursOutput.get(0);
 		
+		MatOfPoint largest;
 		if(filterContoursOutput().size() > 0)
 		{
+			isTargeting = true;
+			largest = filterContoursOutput.get(0);
 			for (MatOfPoint contour : filterContoursOutput)
 			{
 				if(Imgproc.contourArea(contour) > Imgproc.contourArea(largest))
@@ -100,25 +103,32 @@ public class GripPipeline implements VisionPipeline
 					largest = contour;
 				}
 			}
+			
+			// Step utilize largest to find distance
+			Rect rectangle = Imgproc.boundingRect(largest);
+			int centerX = rectangle.x + (rectangle.width / 2);
+			int centerY = rectangle.y + (rectangle.height / 2); // In PCS
+			PCS = new int[]{centerX, centerY};
+			ACS = VisionMath.pcs_to_acs(PCS);
+			
+			// Process to yaw
+			yaw = VisionMath.acs_to_yaw(ACS);
+			
+			// Process to pitch
+			pitch = VisionMath.acs_to_pitch(ACS);
+			
+			// Process to distance
+			distance = VisionMath.distance_to_target(pitch);
 		}
-		
-		
-		
-		// Step utilize largest to find distance
-		Rect rectangle = Imgproc.boundingRect(largest);
-		int centerX = rectangle.x + (rectangle.width / 2);
-		int centerY = rectangle.y + (rectangle.height / 2); // In PCS
-		PCS = new int[]{centerX, centerY};
-		ACS = VisionMath.pcs_to_acs(PCS);
-		
-		// Process to yaw
-		yaw = VisionMath.acs_to_yaw(ACS);
-		
-		// Process to pitch
-		pitch = VisionMath.acs_to_pitch(ACS);
-		
-		// Process to distance
-		distance = VisionMath.distance_to_target(pitch);
+		else
+		{
+			isTargeting = false;
+			PCS = new int[]{0, 0};
+			ACS = new double[]{0, 0};
+			yaw = 0;
+			pitch = 0;
+			distance = 0; // TODO: Find a way to provide values that indicate that there is no target and would not interrupt the code...
+		}
 	}
 
 	/**
@@ -297,6 +307,11 @@ public class GripPipeline implements VisionPipeline
 			if (ratio < minRatio || ratio > maxRatio) continue;
 			output.add(contour);
 		}
+	}
+	
+	public boolean isTargeting()
+	{
+		return isTargeting;
 	}
 	
 	public double[] getACS()

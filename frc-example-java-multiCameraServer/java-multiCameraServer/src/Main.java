@@ -46,6 +46,8 @@ public final class Main {
     }
     // Defines every table entry that we use
     NetworkTable table = networkTableInstance.getTable("PiVisionData");
+    
+    NetworkTableEntry hasTarget = table.getEntry("hasTarget")
     NetworkTableEntry ACSXCoordinate = table.getEntry("ACS");
     NetworkTableEntry ACSYCoordinate = table.getEntry("ACS");
     NetworkTableEntry yawEntry = table.getEntry("yaw");
@@ -71,6 +73,7 @@ public final class Main {
         new GripPipeline(),
         pipeline->
         {
+          hasTarget.setBoolean(pipeline.isTargeting());
           ACSXCoordinate.setDouble(ACSFilterX.calculate(pipeline.getACS()[0]));
           ACSYCoordinate.setDouble(ACSFilterY.calculate(pipeline.getACS()[1]));
           yawEntry.setDouble(yawFilter.calculate(pipeline.getYaw()));
