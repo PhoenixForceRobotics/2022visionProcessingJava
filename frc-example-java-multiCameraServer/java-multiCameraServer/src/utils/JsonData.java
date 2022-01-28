@@ -41,16 +41,10 @@ public class JsonData
     }
     
     // Read configuration files
-    public void readConfig() throws FileNotFoundException
+    public void readConfig() throws IOException
     {
         // Find file
-        File json = new File(getConfigFilePath());
-        
-        // Read file
-        Scanner configIn = new Scanner(json);
-        while (configIn.hasNextLine()) {
-            jsonString += configIn.nextLine(); //almost like we should have started with scanner or something wow
-        }
+        jsonString = Files.readString(Paths.get(getConfigFilePath()));
     
         System.out.println(jsonString);
         JSONObject visionConfig = new JSONObject(jsonString);
