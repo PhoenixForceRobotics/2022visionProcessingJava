@@ -41,7 +41,7 @@ public class Camera extends UsbCamera
         
         CameraServer.getInstance().startAutomaticCapture(this);
 
-        this.setConfigJson(cameraData.getConfig().toString());
-        this.setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
+        setConfigJson(cameraData.getConfig().toString());
+        setConnectionStrategy(VideoSource.ConnectionStrategy.kKeepOpen);
     }   
 }
