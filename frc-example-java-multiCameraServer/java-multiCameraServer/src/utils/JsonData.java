@@ -34,7 +34,7 @@ public class JsonData
         System.err.println("config error in '" + configFilePath + "': " + str);
     }
     
-    public void readConfig()
+    public void readConfig() 
     {
         readConfig(Constants.CONFIG_FILE_PATH);
     }
@@ -44,22 +44,30 @@ public class JsonData
         // Store config file path
         setConfigFilePath(input);
         
-        // Find file
-        try
-        {
-            FileReader readJSON = new FileReader(getConfigFilePath());
-            for(int i = readJSON.read(); i != -1; i = readJSON.read())
-            {
-                jsonString = jsonString.concat(String.valueOf((i)));
-            }
-            
-        } catch (FileNotFoundException e)
-        {
-            e.printStackTrace();
-        } catch (IOException e)
-        {
-            e.printStackTrace();
+        Scanner configIn = new Scanner(getConfigFilePath());
+        
+        while (configIn.hasNextLine()) {
+            jsonString += configIn.nextLine(); //almost like we should have started with scanner or something wow
         }
+        
+        // Find file
+//        try
+//        {
+//            FileReader readJSON = new FileReader(getConfigFilePath());
+//            for(int i = readJSON.read(); i != -1; i = readJSON.read())
+//            {
+//                jsonString = jsonString.concat(String.valueOf((i)));
+//            }
+//
+//        } catch (FileNotFoundException e)
+//        {
+//            e.printStackTrace();
+//        } catch (IOException e)
+//        {
+//            e.printStackTrace();
+//        }
+        
+        
     
         JSONObject visionConfig = new JSONObject(jsonString);
         
