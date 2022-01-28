@@ -24,8 +24,14 @@ public class JsonData
 
     public JsonData()
     {
+        this(Constants.CONFIG_FILE_PATH);
+    }
+    
+    public JsonData(String configFilePath)
+    {
         cameras = new ArrayList<Camera>();
-        configFilePath = Constants.CONFIG_FILE_PATH;
+        this.configFilePath = configFilePath;
+        jsonString = "";
     }
     
     // Report parse error
@@ -34,41 +40,19 @@ public class JsonData
         System.err.println("config error in '" + configFilePath + "': " + str);
     }
     
-    public void readConfig() 
-    {
-        readConfig(Constants.CONFIG_FILE_PATH);
-    }
     // Read configuration files
-    public void readConfig(String input)
-    {              
-        // Store config file path
-        setConfigFilePath(input);
+    public void readConfig() throws FileNotFoundException
+    {
+        // Find file
+        File json = new File(getConfigFilePath());
         
-        Scanner configIn = new Scanner(getConfigFilePath());
-        
+        // Read file
+        Scanner configIn = new Scanner(json);
         while (configIn.hasNextLine()) {
             jsonString += configIn.nextLine(); //almost like we should have started with scanner or something wow
         }
-        
-        // Find file
-//        try
-//        {
-//            FileReader readJSON = new FileReader(getConfigFilePath());
-//            for(int i = readJSON.read(); i != -1; i = readJSON.read())
-//            {
-//                jsonString = jsonString.concat(String.valueOf((i)));
-//            }
-//
-//        } catch (FileNotFoundException e)
-//        {
-//            e.printStackTrace();
-//        } catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
-        
-        
     
+        System.out.println(jsonString);
         JSONObject visionConfig = new JSONObject(jsonString);
         
         // Team number

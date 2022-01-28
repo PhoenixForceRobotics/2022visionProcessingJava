@@ -17,18 +17,21 @@ import java.io.IOException;
 
 public final class Main {
   
-  private static JsonData json = new JsonData();
-  private static final Object imgLock = new Object();
-  
   // Runs the actual program
   public static void main(String... args) throws IOException
   {
+    JsonData json;
+  
     if (args.length > 0) {
-      json.setConfigFilePath(args[0]);
+      json = new JsonData(args[0]);
+    }
+    else
+    {
+      json = new JsonData(Constants.CONFIG_FILE_PATH);
     }
     
     // read configuration
-    json.readConfig(Constants.CONFIG_FILE_PATH);
+    json.readConfig();
 
     // start NetworkTables
     NetworkTableInstance networkTableInstance = NetworkTableInstance.getDefault();
