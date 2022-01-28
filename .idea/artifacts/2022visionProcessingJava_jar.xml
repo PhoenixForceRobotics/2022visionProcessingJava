@@ -9,9 +9,9 @@
       <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/wpilibj.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/wpimath.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/wpiutil.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/gson-2.8.9.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/opencv-347.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/cameraserver.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/json-20211205.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/wpilibNewCommands.jar" path-in-jar="/" />
     </root>
   </artifact>
