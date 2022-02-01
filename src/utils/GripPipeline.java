@@ -1,20 +1,11 @@
 package utils;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.HashMap;
 
+import edu.wpi.first.vision.VisionPipeline;
 import org.opencv.core.*;
-import org.opencv.core.Core.*;
-import org.opencv.features2d.FeatureDetector;
-import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.*;
-import org.opencv.objdetect.*;
 
 /**
 * GripPipeline class.
@@ -23,7 +14,8 @@ import org.opencv.objdetect.*;
 *
 * @author GRIP
 */
-public class GripPipeline {
+public class GripPipeline implements VisionPipeline
+{
 
 	//Outputs
 	private Mat hsvThresholdOutput = new Mat();
@@ -31,6 +23,13 @@ public class GripPipeline {
 	private Mat cvDilateOutput = new Mat();
 	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
 	private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
+	private boolean isTargeting = false; //TODO Find a better name for "foundTarget"
+	private int[] PCS = new int[2];
+	private double[] ACS = new double[2];
+	private double yaw;
+	private double pitch;
+	private double distance;
+	
 
 	static {
 		System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
@@ -83,8 +82,55 @@ public class GripPipeline {
 		double filterContoursMinVertices = 0.0;
 		double filterContoursMinRatio = 0.0;
 		double filterContoursMaxRatio = 1000.0;
-		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter, filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight, filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices, filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio, filterContoursOutput);
-
+		filterContours(filterContoursContours, filterContoursMinArea, filterContoursMinPerimeter,
+			filterContoursMinWidth, filterContoursMaxWidth, filterContoursMinHeight,
+			filterContoursMaxHeight, filterContoursSolidity, filterContoursMaxVertices,
+			filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio,
+			filterContoursOutput);
+		
+		
+		// Step Filter by size
+		
+		MatOfPoint largest;
+		if(filterContoursOutput().size() > 0)
+		{
+			isTargeting = true;
+			largest = filterContoursOutput.get(0);
+			for (MatOfPoint contour : filterContoursOutput)
+			{
+				if(Imgproc.contourArea(contour) > Imgproc.contourArea(largest))
+				{
+					largest = contour;
+				}
+			}
+			
+			// Step utilize largest to find distance
+			
+			// First finds center rectangle and coordinates
+			Rect rectangle = Imgproc.boundingRect(largest);
+			int centerX = rectangle.x + (rectangle.width / 2);
+			int centerY = rectangle.y + (rectangle.height / 2); // In PCS
+			PCS = new int[]{centerX, centerY};
+			ACS = VisionMath.pcs_to_acs(PCS);
+			
+			// Process to yaw
+			yaw = VisionMath.acs_to_yaw(ACS);
+			
+			// Process to pitch
+			pitch = VisionMath.acs_to_pitch(ACS);
+			
+			// Process to distance
+			distance = VisionMath.distance_to_target(pitch);
+		}
+		else
+		{
+			isTargeting = false;
+			PCS = new int[]{0, 0};
+			ACS = new double[]{0, 0};
+			yaw = 0;
+			pitch = 0;
+			distance = 0; // TODO: Find a way to provide values that indicate that there is no target and would not interrupt the code...
+		}
 	}
 
 	/**
@@ -135,7 +181,7 @@ public class GripPipeline {
 	 * @param hue The min and max hue
 	 * @param sat The min and max saturation
 	 * @param val The min and max value
-	 * @param output The image in which to store the output.
+	 * @param out The image in which to store the output.
 	 */
 	private void hsvThreshold(Mat input, double[] hue, double[] sat, double[] val,
 	    Mat out) {
@@ -199,6 +245,8 @@ public class GripPipeline {
 	 * @param maskSize the size of the mask.
 	 * @param output The image in which to store the output.
 	 */
+	
+	// NOT AT ALL THE RIGHT DEFINITION *******
 	private void findContours(Mat input, boolean externalOnly,
 		List<MatOfPoint> contours) {
 		Mat hierarchy = new Mat();
@@ -225,7 +273,7 @@ public class GripPipeline {
 	 * @param maxWidth maximum width
 	 * @param minHeight minimum height
 	 * @param maxHeight maximimum height
-	 * @param Solidity the minimum and maximum solidity of a contour
+	 * @param solidity the minimum and maximum solidity of a contour
 	 * @param minVertexCount minimum vertex Count of the contours
 	 * @param maxVertexCount maximum vertex Count
 	 * @param minRatio minimum ratio of width to height
@@ -261,6 +309,36 @@ public class GripPipeline {
 			if (ratio < minRatio || ratio > maxRatio) continue;
 			output.add(contour);
 		}
+	}
+	
+	public boolean isTargeting()
+	{
+		return isTargeting;
+	}
+	
+	public double[] getACS()
+	{
+		return ACS;
+	}
+	
+	public int[] getPCS()
+	{
+		return PCS;
+	}
+	
+	public double getPitch()
+	{
+		return pitch;
+	}
+	
+	public double getYaw()
+	{
+		return yaw;
+	}
+	
+	public double getDistance()
+	{
+		return distance;
 	}
 }
 
