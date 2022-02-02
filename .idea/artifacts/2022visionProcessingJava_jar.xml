@@ -3,16 +3,16 @@
     <output-path>$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/artifacts/2022visionProcessingJava_jar</output-path>
     <root id="archive" name="2022visionProcessingJava.jar">
       <element id="module-output" name="2022visionProcessingJava" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/cscore.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/ntcore.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/wpiHal.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/wpilibj.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/wpimath.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/wpiutil.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/opencv-347.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/cameraserver.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/json-20211205.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/frc-example-java-multiCameraServer/java-multiCameraServer/lib/wpilibNewCommands.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/cscore.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/ntcore.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/wpiHal.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/wpilibj.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/wpimath.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/wpiutil.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/opencv-347.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/cameraserver.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/json-20211205.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/wpilibNewCommands.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
