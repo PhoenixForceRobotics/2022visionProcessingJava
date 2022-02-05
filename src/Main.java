@@ -54,13 +54,13 @@ public final class Main {
     NetworkTableEntry distanceEntry = table.getEntry("distance");
     
     // Create medianFilters
-    MedianFilter ACSFilterX = new MedianFilter(9);
-    MedianFilter ACSFilterY = new MedianFilter(9);
-    MedianFilter PCSFilterX = new MedianFilter(9);
-    MedianFilter PCSFilterY = new MedianFilter(9);
-    MedianFilter yawFilter = new MedianFilter(9);
-    MedianFilter pitchFilter = new MedianFilter(9);
-    MedianFilter distanceFilter = new MedianFilter(9);
+    MedianFilter ACSFilterX = new MedianFilter(5);
+    MedianFilter ACSFilterY = new MedianFilter(5);
+    MedianFilter PCSFilterX = new MedianFilter(5);
+    MedianFilter PCSFilterY = new MedianFilter(5);
+    MedianFilter yawFilter = new MedianFilter(5);
+    MedianFilter pitchFilter = new MedianFilter(5);
+    MedianFilter distanceFilter = new MedianFilter(5);
     
     // start cameras
     for (Camera camera : json.getCameraArray()) {

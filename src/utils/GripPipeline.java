@@ -88,7 +88,6 @@ public class GripPipeline implements VisionPipeline
 			filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio,
 			filterContoursOutput);
 		
-		
 		// Step Filter by size
 		
 		MatOfPoint largest;
@@ -110,26 +109,27 @@ public class GripPipeline implements VisionPipeline
 			Rect rectangle = Imgproc.boundingRect(largest);
 			int centerX = rectangle.x + (rectangle.width / 2);
 			int centerY = rectangle.y + (rectangle.height / 2); // In PCS
-			PCS = new int[]{centerX, centerY};
-			ACS = VisionMath.pcs_to_acs(PCS);
+			double ACSX = VisionMath.pcsXToAcsX(centerX);
+			double ACSY = VisionMath.pcxYtoAcsY(centerY);
 			
 			// Process to yaw
-			yaw = VisionMath.acs_to_yaw(ACS);
+			yaw = VisionMath.acsToYaw(ACSX);
 			
 			// Process to pitch
-			pitch = VisionMath.acs_to_pitch(ACS);
+			pitch = VisionMath.acsToPitch(ACSY);
 			
 			// Process to distance
-			distance = VisionMath.distance_to_target(pitch);
+			distance = VisionMath.distanceToTarget(pitch);
 		}
 		else
 		{
+			//outputs null values if there are no targets
 			isTargeting = false;
 			PCS = new int[]{0, 0};
 			ACS = new double[]{0, 0};
 			yaw = 0;
 			pitch = 0;
-			distance = 0; // TODO: Find a way to provide values that indicate that there is no target and would not interrupt the code...
+			distance = 0;
 		}
 	}
 
@@ -237,14 +237,7 @@ public class GripPipeline implements VisionPipeline
 		}
 		Imgproc.dilate(src, dst, kernel, anchor, (int)iterations, borderType, borderValue);
 	}
-
-	/**
-	 * Sets the values of pixels in a binary image to their distance to the nearest black pixel.
-	 * @param input The image on which to perform the Distance Transform.
-	 * @param type The Transform.
-	 * @param maskSize the size of the mask.
-	 * @param output The image in which to store the output.
-	 */
+	
 	
 	// NOT AT ALL THE RIGHT DEFINITION *******
 	private void findContours(Mat input, boolean externalOnly,
