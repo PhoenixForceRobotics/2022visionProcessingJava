@@ -16,7 +16,14 @@ repositories {
 }
 
 dependencies {
-    runtime fileTree('lib') { include '*.jar' }
+
+    compile name: 'wpiutil'
+    compile name: 'ntcore'
+    compile name: 'cscore'
+    compile name: 'cameraserver'
+    compile name: 'opencv-347'
+    compile name: 'wpilibj'
+    compile name: 'wpiHal'
 }
 
 wrapper {
