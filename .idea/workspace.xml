@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="2022visionProcessingJava:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="54e64cb8-6211-4341-9fe9-deb0ccd537dd" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/visionProcessing/old gradle stuff/gradle.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.classpath" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.0/fileChanges/last-build.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.0/fileHashes/fileHashes.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.0/fileHashes/fileHashes.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/5.0/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/2022visionProcessingJava.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/2022visionProcessingJava_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.settings/org.eclipse.buildship.core.prefs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/artifacts/2022visionProcessingJava_jar/2022visionProcessingJava.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/META-INF/2022visionProcessingJava.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/utils/Camera.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/utils/CameraData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/utils/Constants$CameraConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/utils/Constants$TargetConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/utils/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/utils/GripPipeline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/utils/JsonData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CompilerOutput/production/2022visionProcessingJava/utils/VisionMath.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LICENSE.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/utils/Camera.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/utils/CameraData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/utils/Constants$CameraConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/utils/Constants$TargetConstants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/utils/Constants.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/utils/GripPipeline.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/utils/JsonData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frc-example-java-multiCameraServer/CompilerOutput/production/2022visionProcessingJava/utils/VisionMath.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/install.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/.idea/lib.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/cameraserver.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/cscore.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/json-20211205.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/ntcore.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/opencv-347.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/wpiHal.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/wpilibNewCommands.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/wpilibj.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/wpimath.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/wpiutil.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/runCamera" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Camera.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/CameraData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/GripPipeline.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/JsonData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/VisionMath.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vision2022/Constants.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vision2022/GripPipeline.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/vision2022/VisionMath.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="25AZTBUeGoFfyCBB4caJgKb7N49" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="54e64cb8-6211-4341-9fe9-deb0ccd537dd" name="Changes" comment="" />
+      <created>1644971864833</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644971864833</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

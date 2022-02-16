@@ -1,0 +1,16 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\cameraserver.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\cscore.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\json-20211205.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\ntcore.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\opencv-347.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\wpiHal.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\wpilibj.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\wpilibNewCommands.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\wpimath.jar",
+        "c:\\GithubShit\\VioletsVisionProcessingBranch\\lib\\wpiutil.jar"
+    ]
+}
