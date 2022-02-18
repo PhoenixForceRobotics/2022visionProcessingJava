@@ -43,6 +43,7 @@ public final class Main {
     }
     // Defines every table entry that we use
     NetworkTable table = networkTableInstance.getTable("PiVisionData");
+    NetworkTable table2 = networkTableInstance.getTable("RobotTurretData");
     
     NetworkTableEntry hasTarget = table.getEntry("hasTarget");
     NetworkTableEntry ACSXCoordinate = table.getEntry("ACSX");
@@ -75,12 +76,11 @@ public final class Main {
         pipeline->
         {
           hasTarget.setBoolean(pipeline.isTargeting());
-          ACSXCoordinate.setDouble(ACSFilterX.calculate(pipeline.getACS()[0]));
-          ACSYCoordinate.setDouble(ACSFilterY.calculate(pipeline.getACS()[1]));
-          PCSXCoordinate.setDouble(PCSFilterX.calculate(pipeline.getPCS()[0]));
-          PCSYCoordinate.setDouble(PCSFilterY.calculate(pipeline.getPCS()[1]));
-  
-          PCSXCoordinate.setDouble(PCSFilterX.calculate(pipeline.getPCS()[0]));
+          ACSXCoordinate.setDouble(ACSFilterX.calculate(pipeline.getACSX()));
+          ACSYCoordinate.setDouble(ACSFilterY.calculate(pipeline.getACSY()));
+          PCSXCoordinate.setDouble(PCSFilterX.calculate(pipeline.getPCSX()));
+          PCSYCoordinate.setDouble(PCSFilterY.calculate(pipeline.getPCSY()));
+          
           yawEntry.setDouble(yawFilter.calculate(pipeline.getYaw()));
           pitchEntry.setDouble(pitchFilter.calculate(pipeline.getPitch()));
           distanceEntry.setDouble(distanceFilter.calculate(pipeline.getDistance()));

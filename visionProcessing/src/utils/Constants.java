@@ -14,14 +14,20 @@ public class Constants {
         public static double FOV_VERTICAL = 36.9187407266;
         
         //TODO: get better values for these
-        public static double HEIGHT_CAMERA = .2; //how far the camera is off the ground (not the robot), measured in feet
+        public static double HEIGHT_CAMERA = 0; //how far the camera is off the ground (not the robot), measured in feet
         
         //TODO: get actual value for this from design/build
         public static double ANGLE_CAMERA = 0; //angle the camera is oriented at in degrees, with 0 being oriented parallel to the floor
     }
+
     public static class TargetConstants {
         //Constants related strictly to the target itself.
         
-        public static double HEIGHT_TARGET = 2; //how far the vision target is off the ground, also measured in feet
+        public static double HEIGHT_TARGET = .2; //how far the vision target is off the ground, also measured in feet
+    }
+
+    public static class TurretConstants {
+        //Constants related strictly to the shooter itself.
+        public static double Gravity = 32.1741; //force of earth's gravity at sea level in feet/second/second; it's in feet to stay consistent with everything else
     }
 }

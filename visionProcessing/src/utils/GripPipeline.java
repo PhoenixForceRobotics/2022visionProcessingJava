@@ -23,9 +23,11 @@ public class GripPipeline implements VisionPipeline
 	private Mat cvDilateOutput = new Mat();
 	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
 	private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
-	private boolean isTargeting = false; //TODO Find a better name for "foundTarget"
-	private int[] PCS = new int[2];
-	private double[] ACS = new double[2];
+	private boolean isTargeting; //TODO Find a better name for "foundTarget"
+	private int PCSX;
+	private int PCSY;
+	private double ACSX;
+	private double ACSY;
 	private double yaw;
 	private double pitch;
 	private double distance;
@@ -91,7 +93,7 @@ public class GripPipeline implements VisionPipeline
 		// Step Filter by size
 		
 		MatOfPoint largest;
-		if(filterContoursOutput().size() > 0)
+		if(filterContoursOutput.size() > 0)
 		{
 			isTargeting = true;
 			largest = filterContoursOutput.get(0);
@@ -109,8 +111,11 @@ public class GripPipeline implements VisionPipeline
 			Rect rectangle = Imgproc.boundingRect(largest);
 			int centerX = rectangle.x + (rectangle.width / 2);
 			int centerY = rectangle.y + (rectangle.height / 2); // In PCS
-			double ACSX = VisionMath.pcsXToAcsX(centerX);
-			double ACSY = VisionMath.pcxYtoAcsY(centerY);
+			PCSX = centerX;
+			PCSY = centerY;
+
+			ACSX = VisionMath.pcsXToAcsX(centerX);
+			ACSY = VisionMath.pcxYtoAcsY(centerY);
 			
 			// Process to yaw
 			yaw = VisionMath.acsToYaw(ACSX);
@@ -125,8 +130,7 @@ public class GripPipeline implements VisionPipeline
 		{
 			//outputs null values if there are no targets
 			isTargeting = false;
-			PCS = new int[]{0, 0};
-			ACS = new double[]{0, 0};
+			PCSX, PCSY, ACSX, ACSY = 0;
 			yaw = 0;
 			pitch = 0;
 			distance = 0;
@@ -309,14 +313,20 @@ public class GripPipeline implements VisionPipeline
 		return isTargeting;
 	}
 	
-	public double[] getACS()
-	{
-		return ACS;
+	public int getPCSX() {
+		return PCSX;
 	}
-	
-	public int[] getPCS()
-	{
-		return PCS;
+
+	public int getPCSY() {
+		return PCSY;
+	}
+
+	public double getACSX() {
+		return ACSX;
+	}
+
+	public double getACSY() {
+		return ACSY;
 	}
 	
 	public double getPitch()
