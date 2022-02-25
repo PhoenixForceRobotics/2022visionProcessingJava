@@ -54,13 +54,13 @@ public final class Main {
     NetworkTableEntry distanceEntry = table.getEntry("distance");
     
     // Create medianFilters
-    MedianFilter ACSFilterX = new MedianFilter(9);
-    MedianFilter ACSFilterY = new MedianFilter(9);
-    MedianFilter PCSFilterX = new MedianFilter(9);
-    MedianFilter PCSFilterY = new MedianFilter(9);
-    MedianFilter yawFilter = new MedianFilter(9);
-    MedianFilter pitchFilter = new MedianFilter(9);
-    MedianFilter distanceFilter = new MedianFilter(9);
+    MedianFilter ACSFilterX = new MedianFilter(5);
+    MedianFilter ACSFilterY = new MedianFilter(5);
+    MedianFilter PCSFilterX = new MedianFilter(5);
+    MedianFilter PCSFilterY = new MedianFilter(5);
+    MedianFilter yawFilter = new MedianFilter(5);
+    MedianFilter pitchFilter = new MedianFilter(5);
+    MedianFilter distanceFilter = new MedianFilter(5);
     
     // start cameras
     for (Camera camera : json.getCameraArray()) {
@@ -75,12 +75,11 @@ public final class Main {
         pipeline->
         {
           hasTarget.setBoolean(pipeline.isTargeting());
-          ACSXCoordinate.setDouble(ACSFilterX.calculate(pipeline.getACS()[0]));
-          ACSYCoordinate.setDouble(ACSFilterY.calculate(pipeline.getACS()[1]));
-          PCSXCoordinate.setDouble(PCSFilterX.calculate(pipeline.getPCS()[0]));
-          PCSYCoordinate.setDouble(PCSFilterY.calculate(pipeline.getPCS()[1]));
+          ACSXCoordinate.setDouble(ACSFilterX.calculate(pipeline.getACSX()));
+          ACSYCoordinate.setDouble(ACSFilterY.calculate(pipeline.getACSY()));
+          PCSXCoordinate.setDouble(PCSFilterX.calculate(pipeline.getPCSX()));
+          PCSYCoordinate.setDouble(PCSFilterY.calculate(pipeline.getPCSY()));
   
-          PCSXCoordinate.setDouble(PCSFilterX.calculate(pipeline.getPCS()[0]));
           yawEntry.setDouble(yawFilter.calculate(pipeline.getYaw()));
           pitchEntry.setDouble(pitchFilter.calculate(pipeline.getPitch()));
           distanceEntry.setDouble(distanceFilter.calculate(pipeline.getDistance()));

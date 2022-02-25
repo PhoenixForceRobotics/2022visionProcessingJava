@@ -23,9 +23,11 @@ public class GripPipeline implements VisionPipeline
 	private Mat cvDilateOutput = new Mat();
 	private ArrayList<MatOfPoint> findContoursOutput = new ArrayList<MatOfPoint>();
 	private ArrayList<MatOfPoint> filterContoursOutput = new ArrayList<MatOfPoint>();
-	private boolean isTargeting = false; //TODO Find a better name for "foundTarget"
-	private int[] PCS = new int[2];
-	private double[] ACS = new double[2];
+	private boolean isTargeting; //TODO Find a better name for "foundTarget"
+	private int PCSX;
+	private int PCSY;
+	private double ACSX;
+	private double ACSY;
 	private double yaw;
 	private double pitch;
 	private double distance;
@@ -88,11 +90,10 @@ public class GripPipeline implements VisionPipeline
 			filterContoursMinVertices, filterContoursMinRatio, filterContoursMaxRatio,
 			filterContoursOutput);
 		
-		
 		// Step Filter by size
 		
 		MatOfPoint largest;
-		if(filterContoursOutput().size() > 0)
+		if(filterContoursOutput.size() > 0)
 		{
 			isTargeting = true;
 			largest = filterContoursOutput.get(0);
@@ -110,26 +111,32 @@ public class GripPipeline implements VisionPipeline
 			Rect rectangle = Imgproc.boundingRect(largest);
 			int centerX = rectangle.x + (rectangle.width / 2);
 			int centerY = rectangle.y + (rectangle.height / 2); // In PCS
-			PCS = new int[]{centerX, centerY};
-			ACS = VisionMath.pcs_to_acs(PCS);
+			PCSX = centerX;
+			PCSY = centerY;
+			
+			ACSX = VisionMath.pcsXToAcsX(centerX);
+			ACSY = VisionMath.pcxYtoAcsY(centerY);
 			
 			// Process to yaw
-			yaw = VisionMath.acs_to_yaw(ACS);
+			yaw = VisionMath.acsToYaw(ACSX);
 			
 			// Process to pitch
-			pitch = VisionMath.acs_to_pitch(ACS);
+			pitch = VisionMath.acsToPitch(ACSY);
 			
 			// Process to distance
-			distance = VisionMath.distance_to_target(pitch);
+			distance = VisionMath.distanceToTarget(pitch);
 		}
 		else
 		{
+			//outputs null values if there are no targets
 			isTargeting = false;
-			PCS = new int[]{0, 0};
-			ACS = new double[]{0, 0};
+			PCSX = 0;
+			PCSY = 0;
+			ACSX = 0;
+			ACSY = 0;
 			yaw = 0;
 			pitch = 0;
-			distance = 0; // TODO: Find a way to provide values that indicate that there is no target and would not interrupt the code...
+			distance = 0;
 		}
 	}
 
@@ -237,14 +244,7 @@ public class GripPipeline implements VisionPipeline
 		}
 		Imgproc.dilate(src, dst, kernel, anchor, (int)iterations, borderType, borderValue);
 	}
-
-	/**
-	 * Sets the values of pixels in a binary image to their distance to the nearest black pixel.
-	 * @param input The image on which to perform the Distance Transform.
-	 * @param type The Transform.
-	 * @param maskSize the size of the mask.
-	 * @param output The image in which to store the output.
-	 */
+	
 	
 	// NOT AT ALL THE RIGHT DEFINITION *******
 	private void findContours(Mat input, boolean externalOnly,
@@ -316,14 +316,24 @@ public class GripPipeline implements VisionPipeline
 		return isTargeting;
 	}
 	
-	public double[] getACS()
+	public int getPCSX()
 	{
-		return ACS;
+		return PCSX;
 	}
 	
-	public int[] getPCS()
+	public int getPCSY()
 	{
-		return PCS;
+		return PCSY;
+	}
+	
+	public double getACSX()
+	{
+		return ACSX;
+	}
+	
+	public double getACSY()
+	{
+		return ACSY;
 	}
 	
 	public double getPitch()
