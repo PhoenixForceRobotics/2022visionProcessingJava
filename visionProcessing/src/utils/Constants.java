@@ -20,6 +20,10 @@ public class Constants {
         public static double ANGLE_CAMERA = 23; //angle the camera is oriented at in degrees, with 0 being oriented parallel to the floor
     }
 
+    public static class PipelineConstants {
+        public static int MEDIAN_FILTER_COUNT = 11; //how many entries the medianFilter holds at once
+    }
+
     public static class TargetConstants {
         //Constants related strictly to the target itself.
         

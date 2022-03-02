@@ -54,13 +54,13 @@ public final class Main {
     NetworkTableEntry distanceEntry = table.getEntry("distance");
     
     // Create medianFilters
-    MedianFilter ACSFilterX = new MedianFilter(5);
-    MedianFilter ACSFilterY = new MedianFilter(5);
-    MedianFilter PCSFilterX = new MedianFilter(5);
-    MedianFilter PCSFilterY = new MedianFilter(5);
-    MedianFilter yawFilter = new MedianFilter(5);
-    MedianFilter pitchFilter = new MedianFilter(5);
-    MedianFilter distanceFilter = new MedianFilter(5);
+    MedianFilter ACSFilterX = new MedianFilter(Constants.PipelineConstants.MEDIAN_FILTER_COUNT);
+    MedianFilter ACSFilterY = new MedianFilter(Constants.PipelineConstants.MEDIAN_FILTER_COUNT);
+    MedianFilter PCSFilterX = new MedianFilter(Constants.PipelineConstants.MEDIAN_FILTER_COUNT);
+    MedianFilter PCSFilterY = new MedianFilter(Constants.PipelineConstants.MEDIAN_FILTER_COUNT);
+    MedianFilter yawFilter = new MedianFilter(Constants.PipelineConstants.MEDIAN_FILTER_COUNT);
+    MedianFilter pitchFilter = new MedianFilter(Constants.PipelineConstants.MEDIAN_FILTER_COUNT);
+    MedianFilter distanceFilter = new MedianFilter(Constants.PipelineConstants.MEDIAN_FILTER_COUNT);
     
     // start cameras
     for (Camera camera : json.getCameraArray()) {
@@ -88,7 +88,7 @@ public final class Main {
       visionThread.start();
     }
 
-    // loop forever
+    //oblivion
     while (true) {
       try {
         Thread.sleep(10000);
