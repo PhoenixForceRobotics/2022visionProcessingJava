@@ -8,10 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="54e64cb8-6211-4341-9fe9-deb0ccd537dd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visionProcessing/CompilerOutput/artifacts/2022visionProcessingJava_jar/2022visionProcessingJava.jar" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/visionProcessing/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/visionProcessing/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visionProcessing/src/utils/ArcMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/visionProcessing/src/utils/ArcMath.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visionProcessing/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/visionProcessing/src/utils/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visionProcessing/src/utils/GripPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/visionProcessing/src/utils/GripPipeline.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -130,7 +130,8 @@ public class GripPipeline implements VisionPipeline
 		{
 			//outputs null values if there are no targets
 			isTargeting = false;
-			PCSX, PCSY, ACSX, ACSY = 0;
+			PCSX = PCSY = 0; //if you stack both these into a single line it makes java sad (doubles != ints)
+			ACSX = ACSY = 0;
 			yaw = 0;
 			pitch = 0;
 			distance = 0;

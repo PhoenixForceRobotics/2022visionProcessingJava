@@ -43,7 +43,6 @@ public final class Main {
     }
     // Defines every table entry that we use
     NetworkTable table = networkTableInstance.getTable("PiVisionData");
-    NetworkTable table2 = networkTableInstance.getTable("RobotTurretData");
     
     NetworkTableEntry hasTarget = table.getEntry("hasTarget");
     NetworkTableEntry ACSXCoordinate = table.getEntry("ACSX");

@@ -11,10 +11,10 @@ public class ArcMath {
         the distance to the target, and the height difference between the target
         and the shooter.
         
-        Takes the top-down 'as the crow flies' distance to the target (feet)), 
+        Takes the top-down 'as the crow flies' distance to the target (inches)), 
         the angle the shooter is aimed at (degrees), and the height of the target
-        relative to the turret (feet). Returns the velocity necessary to launch 
-        the ball into the hoop (feet/second), if applicable. 
+        relative to the turret (inches). Returns the velocity necessary to launch 
+        the ball into the hoop (inches/second), if applicable. 
         
         Note that this will not automatically handle whether or not its output is 
         possible or not.
@@ -31,17 +31,17 @@ public class ArcMath {
         the vision target based on the velocity of the flywheels, the angle being 
         shot at, and the height to the hoop. 
         
-        Takes the velocity of the flywheels (feet/second), the angle of the shooter
-        (degrees), and the height of the target relative to the turret (feet). 
+        Takes the velocity of the flywheels (inches/second), the angle of the shooter
+        (degrees), and the height of the target relative to the turret (inches). 
         Returns the distance required to launch the ball into the hoop, if applicable.
 
         Note that this will not automatically handle whether or not its output is 
         possible or not.
         */
         //again, the component things are just to make this more legible
-        double sqrtComponent = (Math.pow(flywheelVelocity, 2) * Math.pow(Math.sin(angle, 2)) - (Constants.TurretConstants.GRAVITY * 2 * height);
+        double sqrtComponent = (Math.pow(flywheelVelocity, 2) * Math.pow(Math.sin(angle), 2) - (Constants.TurretConstants.GRAVITY * 2 * height));
         double numeratorComponent = (flywheelVelocity * Math.sin(angle)) + Math.sqrt(sqrtComponent);
         double fractionComponent = numeratorComponent / Constants.TurretConstants.GRAVITY;
-        return (velocity * Math.cos(angle) * fractionComponent);
+        return (flywheelVelocity * Math.cos(angle) * fractionComponent);
     }
 }
