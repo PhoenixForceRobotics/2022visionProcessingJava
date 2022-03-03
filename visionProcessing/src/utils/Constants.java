@@ -1,5 +1,7 @@
 package utils;
 
+import java.lang.Math;
+
 public class Constants {
     //In the interest of avoiding magic numbers, all constants are here.
     public static String CONFIG_FILE_PATH = "/boot/frc.json";
@@ -14,10 +16,10 @@ public class Constants {
         public static double FOV_VERTICAL = 36.9187407266;
         
         //TODO: get better values for these
-        public static double HEIGHT_CAMERA = 43; //how far the camera is off the ground (not the robot), measured in inches
+        public static double HEIGHT_CAMERA = 39; //how far the camera is off the ground (not the robot), measured in inches
         
         //TODO: get actual value for this from design/build
-        public static double ANGLE_CAMERA = 23; //angle the camera is oriented at in degrees, with 0 being oriented parallel to the floor
+        public static double ANGLE_CAMERA = 36; //angle the camera is oriented at in degrees, with 0 being oriented parallel to the floor
     }
 
     public static class PipelineConstants {
@@ -26,8 +28,8 @@ public class Constants {
 
     public static class TargetConstants {
         //Constants related strictly to the target itself.
-        
-        public static double HEIGHT_TARGET = 104; //how far the vision target is off the ground, also measured in inches
+        //104
+        public static double HEIGHT_TARGET = 103; //how far the vision target is off the ground, also measured in inches
     }
 
     public static class TurretConstants {
