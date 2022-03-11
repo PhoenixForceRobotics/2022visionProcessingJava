@@ -1,6 +1,7 @@
 package utils;
 
 import java.lang.Math;
+import org.opencv.core.Scalar;
 
 public class Constants {
     //In the interest of avoiding magic numbers, all constants are here.
@@ -23,13 +24,17 @@ public class Constants {
     }
 
     public static class PipelineConstants {
-        public static int MEDIAN_FILTER_COUNT = 11; //how many entries the medianFilter holds at once
+        //Constants related to
+        public static int MEDIAN_FILTER_COUNT = 11; //how many entries the medianFilter holds at once; more entries means more resistance to errors but also more latency
+        public static Scalar COLOR_LOCATED_BOUNDING_RECT = new Scalar(255, 0, 0); //color of the bounding rectangle for vision targets on the dashboard; color in BGR order (NOT RGB)
+        public static Scalar COLOR_MISSING_BOUNDING_RECT = new Scalar(0, 0, 255); //color of the rectangle if no vision targets are found; color in BGR order (NOT RGB)
+        public static int THICKNESS_BOUNDING_RECT = 3; //thickness of the bounding rectangle for vision targets on the dashboard, measured in pixels
     }
 
     public static class TargetConstants {
         //Constants related strictly to the target itself.
-        //104
-        public static double HEIGHT_TARGET = 103; //how far the vision target is off the ground, also measured in inches
+        //103 is practice target height, 104 is FRC target height
+        public static double HEIGHT_TARGET = 104; //how far the vision target is off the ground, also measured in inches
     }
 
     public static class TurretConstants {

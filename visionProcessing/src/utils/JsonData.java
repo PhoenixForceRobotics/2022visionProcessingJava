@@ -126,9 +126,3 @@ public class JsonData
         return cameras.toArray(new Camera[cameras.size()]);
     }
 }
-
-
-
-
-
-

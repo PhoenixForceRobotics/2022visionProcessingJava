@@ -9,14 +9,12 @@ public class Camera extends UsbCamera
 {
     private CameraData cameraData;
 
-    public Camera(CameraData cameraData)
-    {
+    public Camera(CameraData cameraData) {
         super(cameraData.getName(), cameraData.getPath());
         this.cameraData = cameraData;
     }
     
-    public static CameraData readCameraConfig(JSONObject cameraJSONObj)
-    {
+    public static CameraData readCameraConfig(JSONObject cameraJSONObj) {
         CameraData outputData = new CameraData();
         
         // name
