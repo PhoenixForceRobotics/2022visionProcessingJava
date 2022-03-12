@@ -134,13 +134,7 @@ public class GripPipeline implements VisionPipeline
 			
 			// Process to distance
 			distance = VisionMath.distanceToTarget(pitch);
-
-			//oh god writing in straight openCV from here on out I can't do this (you see it's funny because I'm not straight laugh now or i will eliminate you)
-			//the most efficient way i could find to do it is to draw a copy of the original
-			//Use rectangle around target and annotate it onto a new output
-			
-		}
-		else {
+		} else {
 			//outputs null values if there are no targets
 			boxOfOblivion = null;
 			isTargeting = false;
@@ -150,8 +144,12 @@ public class GripPipeline implements VisionPipeline
 			pitch = 0;
 			distance = 0;
 		}	
+
+		//oh god writing in straight openCV from here on out I can't do this (you see it's funny because I'm not straight laugh now or i will eliminate you)
+		//the most efficient way i could find to do it is to draw a copy of the original
+		//Use rectangle around target and annotate it onto a new output
+
 		annotated = source0.clone();
-		//output.putFrame(annotated);
 		if (boxOfOblivion != null) {
 			//using these buffer values lets us visually indicate when it's lost its target
 			boxTL = boxOfOblivion.tl();
@@ -164,6 +162,11 @@ public class GripPipeline implements VisionPipeline
 		}
 		Imgproc.rectangle(annotated, boxTL, boxBR, boxColor, Constants.PipelineConstants.THICKNESS_BOUNDING_RECT);
 		output.putFrame(annotated);
+
+		//sidestep OOM crash, hopefully
+		annotated = null;
+		boxTL = boxBR = null;
+		boxColor = null;
 		//output.putFrame(source0);
 	}
 
