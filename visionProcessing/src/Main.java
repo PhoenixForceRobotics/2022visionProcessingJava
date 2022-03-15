@@ -91,7 +91,8 @@ public final class Main {
     //oblivion
     while (true) {
       try {
-        Thread.sleep(10000);
+        System.gc();
+        Thread.sleep(1000);
       } catch (InterruptedException ex) {
         System.exit(1);
       }

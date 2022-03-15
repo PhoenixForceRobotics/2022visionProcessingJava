@@ -25,7 +25,7 @@ public class Constants {
 
     public static class PipelineConstants {
         //Constants related to
-        public static int MEDIAN_FILTER_COUNT = 11; //how many entries the medianFilter holds at once; more entries means more resistance to errors but also more latency
+        public static int MEDIAN_FILTER_COUNT = 5; //how many entries the medianFilter holds at once; more entries means more resistance to errors but also more latency
         public static Scalar COLOR_LOCATED_BOUNDING_RECT = new Scalar(255, 0, 0); //color of the bounding rectangle for vision targets on the dashboard; color in BGR order (NOT RGB)
         public static Scalar COLOR_MISSING_BOUNDING_RECT = new Scalar(0, 0, 255); //color of the rectangle if no vision targets are found; color in BGR order (NOT RGB)
         public static int THICKNESS_BOUNDING_RECT = 3; //thickness of the bounding rectangle for vision targets on the dashboard, measured in pixels

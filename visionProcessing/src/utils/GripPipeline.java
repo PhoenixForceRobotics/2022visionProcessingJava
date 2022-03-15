@@ -138,7 +138,7 @@ public class GripPipeline implements VisionPipeline
 			//outputs null values if there are no targets
 			boxOfOblivion = null;
 			isTargeting = false;
-			PCSX = PCSY = 0; //if you stack both these into a single line it makes java sad (doubles != ints)
+			PCSX = PCSY = 0;
 			ACSX = ACSY = 0;
 			yaw = 0;
 			pitch = 0;
@@ -149,6 +149,8 @@ public class GripPipeline implements VisionPipeline
 		//the most efficient way i could find to do it is to draw a copy of the original
 		//Use rectangle around target and annotate it onto a new output
 
+		//(if there's a memory leak blame this block of code)
+		
 		annotated = source0.clone();
 		if (boxOfOblivion != null) {
 			//using these buffer values lets us visually indicate when it's lost its target
@@ -167,7 +169,7 @@ public class GripPipeline implements VisionPipeline
 		annotated = null;
 		boxTL = boxBR = null;
 		boxColor = null;
-		//output.putFrame(source0);
+		source0 = null;
 	}
 
 	/**
