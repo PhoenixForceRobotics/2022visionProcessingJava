@@ -17,7 +17,7 @@ public class Constants {
         public static double FOV_VERTICAL = 36.9187407266;
         
         //TODO: get better values for these
-        public static double HEIGHT_CAMERA = 39; //how far the camera is off the ground (not the robot), measured in inches
+        public static double HEIGHT_CAMERA = 32.25; //how far the camera is off the ground (not the robot), measured in inches
         
         //TODO: get actual value for this from design/build
         public static double ANGLE_CAMERA = 36; //angle the camera is oriented at in degrees, with 0 being oriented parallel to the floor
