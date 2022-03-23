@@ -41,5 +41,7 @@ public class Constants {
         //Constants related strictly to the shooter itself.
         public static double GRAVITY = 386.0892; //force of earth's gravity at sea level in inches/second/second; it's in inches to stay consistent with everything else
         public static double HEIGHT_TURRET = 0; //height of the turret off the ground in inches
+        //TODO: put actual value (if this ever gets used)
+        public static double DISTANCE_CAMERA_TO_TURRET_CENTER = 0; //distance from center of camera sensor to center of turret in inches    }
     }
 }

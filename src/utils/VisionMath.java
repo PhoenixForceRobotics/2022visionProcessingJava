@@ -61,4 +61,21 @@ public class VisionMath {
         
         return (targetHeight - camHeight) / Math.tan(Math.toRadians(camAngle + pitch)); //a magic thing from frc that we worked out for ourselves (but first from frc) :3
     }
+    public static double necessaryCorrectionAngle(double calculatedDistance) {
+        /*
+        Finds the angle necessary to correct rotation such that the flywheels are pointed at the target instead of the camera.
+        
+        Unused because it's probably not necessary, but seeing as I have time I'm writing it up now.
+        */
+        return Math.toDegrees(Math.atan(calculatedDistance/Constants.TurretConstants.DISTANCE_CAMERA_TO_TURRET_CENTER));
+    }
+    public static double trueDistance(double calculatedDistance) {
+        /*
+        Finds the true distance from the turret to the hoop (current distance calculations work from the camera's position).
+
+        Unused because it's probably not necessary, but seeing as I have time I'm writing it up now.
+        */
+        double correctionAngle = VisionMath.necessaryCorrectionAngle(calculatedDistance);
+        return Math.cos(Math.toRadians(correctionAngle)) * calculatedDistance;
+    }
 }

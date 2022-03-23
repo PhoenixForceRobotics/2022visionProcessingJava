@@ -91,7 +91,8 @@ public final class Main {
     //oblivion
     while (true) {
       try {
-        System.gc();
+        //(the official frc example code had it stalling like this, but here it's just being used to hopefully keep memory usage in check)
+        System.gc(); //call garbage collection every second 
         Thread.sleep(1000);
       } catch (InterruptedException ex) {
         System.exit(1);
