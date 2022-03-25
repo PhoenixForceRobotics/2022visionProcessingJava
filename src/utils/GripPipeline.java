@@ -158,8 +158,8 @@ public class GripPipeline implements VisionPipeline
 			boxBR = boxOfOblivion.br();
 			boxColor = Constants.PipelineConstants.COLOR_LOCATED_BOUNDING_RECT; //set it to 'found target' color
 		} else {
-			boxTL = new Point(0, 0);
-			boxBR = new Point(640, 360);
+			boxTL = new Point(0 + Constants.PipelineConstants.OFFSET_BORDER_MISSING, 0 + Constants.PipelineConstants.OFFSET_BORDER_MISSING);
+			boxBR = new Point(Constants.CameraConstants.RESOLUTION_Y - Constants.PipelineConstants.OFFSET_BORDER_MISSING, Constants.CameraConstants.RESOLUTION_Y - Constants.PipelineConstants.OFFSET_BORDER_MISSING);
 			boxColor = Constants.PipelineConstants.COLOR_MISSING_BOUNDING_RECT; //set it to 'missing target' color
 		}
 		Imgproc.rectangle(annotated, boxTL, boxBR, boxColor, Constants.PipelineConstants.THICKNESS_BOUNDING_RECT);

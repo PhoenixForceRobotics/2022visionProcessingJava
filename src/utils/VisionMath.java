@@ -6,12 +6,12 @@ public class VisionMath {
     
     public static double pcsXToAcsX(double coordinate)
     {
-        return pcsToAcs(coordinate, Constants.CameraConstants.X_RESOLUTION); // inverts the value
+        return pcsToAcs(coordinate, Constants.CameraConstants.RESOLUTION_X); // inverts the value
     }
     
     public static double pcxYtoAcsY(double coordinate)
     {
-        return -pcsToAcs(coordinate, Constants.CameraConstants.Y_RESOLUTION);
+        return -pcsToAcs(coordinate, Constants.CameraConstants.RESOLUTION_Y);
     }
     
     private static double pcsToAcs(double coordinate, double resolution) {
