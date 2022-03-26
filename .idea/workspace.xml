@@ -8,6 +8,7 @@
   <component name="ChangeListManager">
     <list default="true" id="54e64cb8-6211-4341-9fe9-deb0ccd537dd" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/GripPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/GripPipeline.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/VisionMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/VisionMath.java" afterDir="false" />

@@ -144,32 +144,7 @@ public class GripPipeline implements VisionPipeline
 			pitch = 0;
 			distance = 0;
 		}	
-
-		//oh god writing in straight openCV from here on out I can't do this (you see it's funny because I'm not straight laugh now or i will eliminate you)
-		//the most efficient way i could find to do it is to draw a copy of the original
-		//Use rectangle around target and annotate it onto a new output
-
-		//(if there's a memory leak blame this block of code)
-		
-		annotated = source0.clone();
-		if (boxOfOblivion != null) {
-			//using these buffer values lets us visually indicate when it's lost its target
-			boxTL = boxOfOblivion.tl();
-			boxBR = boxOfOblivion.br();
-			boxColor = Constants.PipelineConstants.COLOR_LOCATED_BOUNDING_RECT; //set it to 'found target' color
-		} else {
-			boxTL = new Point(0 + Constants.PipelineConstants.OFFSET_BORDER_MISSING, 0 + Constants.PipelineConstants.OFFSET_BORDER_MISSING);
-			boxBR = new Point(Constants.CameraConstants.RESOLUTION_Y - Constants.PipelineConstants.OFFSET_BORDER_MISSING, Constants.CameraConstants.RESOLUTION_Y - Constants.PipelineConstants.OFFSET_BORDER_MISSING);
-			boxColor = Constants.PipelineConstants.COLOR_MISSING_BOUNDING_RECT; //set it to 'missing target' color
-		}
-		Imgproc.rectangle(annotated, boxTL, boxBR, boxColor, Constants.PipelineConstants.THICKNESS_BOUNDING_RECT);
-		output.putFrame(annotated);
-
-		//sidestep OOM crash, hopefully
-		annotated = null;
-		boxTL = boxBR = null;
-		boxColor = null;
-		source0 = null;
+		VisionGUI.annotateFrame(boxOfOblivion, source0, isTargeting, output);
 	}
 
 	/**

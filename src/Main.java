@@ -15,15 +15,13 @@ import java.io.IOException;
 public final class Main {
   
   // Runs the actual program
-  public static void main(String... args) throws IOException
-  {
+  public static void main(String... args) throws IOException {
     JsonData json;
   
     if (args.length > 0) {
       json = new JsonData(args[0]);
     }
-    else
-    {
+    else {
       json = new JsonData(Constants.CONFIG_FILE_PATH);
     }
     
@@ -92,8 +90,8 @@ public final class Main {
     while (true) {
       try {
         //(the official frc example code had it stalling like this, but here it's just being used to hopefully keep memory usage in check)
-        System.gc(); //call garbage collection every second 
-        Thread.sleep(1000);
+        //System.gc(); //call garbage collection every second 
+        Thread.sleep(10000);
       } catch (InterruptedException ex) {
         System.exit(1);
       }

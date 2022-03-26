@@ -4,13 +4,11 @@ package utils;
 
 public class VisionMath {
     
-    public static double pcsXToAcsX(double coordinate)
-    {
+    public static double pcsXToAcsX(double coordinate) {
         return pcsToAcs(coordinate, Constants.CameraConstants.RESOLUTION_X); // inverts the value
     }
     
-    public static double pcxYtoAcsY(double coordinate)
-    {
+    public static double pcxYtoAcsY(double coordinate) {
         return -pcsToAcs(coordinate, Constants.CameraConstants.RESOLUTION_Y);
     }
     
