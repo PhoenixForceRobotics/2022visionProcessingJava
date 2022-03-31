@@ -11,7 +11,6 @@
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils/GripPipeline.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/GripPipeline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/VisionMath.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/VisionMath.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

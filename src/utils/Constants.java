@@ -19,8 +19,8 @@ public class Constants {
         //TODO: get better values for these
         public static double HEIGHT_CAMERA = 30.75; //how far the camera is off the ground (not the robot), measured in inches
         
-        //TODO: get actual value for this from design/build
-        public static double ANGLE_CAMERA = 36; //angle the camera is oriented at in degrees, with 0 being oriented parallel to the floor
+        //36 is default mounting angle, 39 is with only half the holder attached
+        public static double ANGLE_CAMERA = 39; //angle the camera is oriented at in degrees, with 0 being oriented parallel to the floor
     }
 
     public static class PipelineConstants {
