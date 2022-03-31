@@ -59,7 +59,7 @@ public class VisionMath {
         double camAngle = Constants.CameraConstants.ANGLE_CAMERA;
         double targetHeight = Constants.TargetConstants.HEIGHT_TARGET;
         
-        return (targetHeight - camHeight) / Math.tan(Math.toRadians(camAngle + pitch)); //a magic thing from frc that we worked out for ourselves (but first from frc) :3
+        return (targetHeight - camHeight) / (Math.tan(Math.toRadians(camAngle + pitch))); //a magic thing from frc that we worked out for ourselves (but first from frc) :3
     }
     public static double necessaryCorrectionAngle(double calculatedDistance) {
         /*
