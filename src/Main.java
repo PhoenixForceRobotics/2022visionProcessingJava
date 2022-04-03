@@ -52,6 +52,8 @@ public final class Main {
     NetworkTableEntry yawEntry = table.getEntry("yaw");
     NetworkTableEntry pitchEntry = table.getEntry("pitch");
     NetworkTableEntry distanceEntry = table.getEntry("distance");
+    //NetworkTableEntry memoryUsage = table.getEntry("memoryUsage");
+    //NetworkTableEntry memoryRemaining = table.getEntry("memoryRemaining");
     
     // Create medianFilters
     MedianFilter ACSFilterX = new MedianFilter(Constants.PipelineConstants.MEDIAN_FILTER_COUNT);
@@ -83,6 +85,8 @@ public final class Main {
           yawEntry.setDouble(yawFilter.calculate(pipeline.getYaw()));
           pitchEntry.setDouble(pitchFilter.calculate(pipeline.getPitch()));
           distanceEntry.setDouble(distanceFilter.calculate(pipeline.getDistance()));
+          //memoryUsage.setDouble(Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory() / 1000000000.0); //converts to mb
+          //memoryRemaining.setDouble(Runtime.getRuntime().freeMemory() / 1000000000.0);
         }
       );
       visionThread.start();

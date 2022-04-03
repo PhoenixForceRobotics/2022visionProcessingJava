@@ -34,7 +34,7 @@ public class VisionMath {
         Optional args: fov is the vertical FOV of the camera.
         */
         double fov = Constants.CameraConstants.FOV_VERTICAL;
-        double pitch = (ACSY / 2) * fov; //more FRC magic that is a bit confusing
+        double pitch = ACSY * (fov / 2); //more FRC magic that is a bit confusing
         return pitch;
     }
 
@@ -46,7 +46,7 @@ public class VisionMath {
         Optional args: FOV is the horizontal FOV of the camera.
         */
         double fov = Constants.CameraConstants.FOV_HORIZONTAL;
-        double yaw = (ACSX / 2) * fov; //the same FRC arcane sorcery
+        double yaw = ACSX * (fov / 2); //the same FRC arcane sorcery
         return yaw;
     }
     public static double distanceToTarget(double pitch) {
